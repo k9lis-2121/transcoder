@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * @copyright 2024 Ожерельев Валерий Александрович
+ */
 namespace App\Service\FfmpegHandler;
 
 use Symfony\Component\Finder\Finder;

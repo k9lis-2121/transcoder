@@ -1,4 +1,7 @@
 <?php
+/**
+ * @copyright 2024 Ожерельев Валерий Александрович
+ */
 namespace App\MessageHandler;
 
 use App\Message\TranscodeProcessingMessage;

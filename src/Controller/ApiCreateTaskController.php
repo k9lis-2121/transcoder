@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * @copyright 2024 Ожерельев Валерий Александрович
+ */
+
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
