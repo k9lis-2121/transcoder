@@ -141,9 +141,17 @@ class ApiCreateTask implements OpenApiFactoryInterface
                             'schema' => [
                                 'type' => 'object',
                                 'properties' => [
-                                    'price' => [
-                                        'type' => 'number',
-                                        'example' => 123.45,
+                                    'message' => [
+                                        'type' => 'boolean',
+                                        'example' => true,
+                                    ],
+                                    'messageTitle' => [
+                                        'type' => 'string',
+                                        'example' => 'Транскодирование',
+                                    ],
+                                    'messageBody' => [
+                                        'type' => 'string',
+                                        'example' => 'Задача поставлена в очередь ',
                                     ],
                                 ],
                             ],
