@@ -9,7 +9,7 @@ use ApiPlatform\OpenApi\Model\RequestBody;
 use ApiPlatform\OpenApi\Model\Response;
 use ApiPlatform\OpenApi\OpenApi;
 use ArrayObject;
-
+ 
 class ApiCreateTask implements OpenApiFactoryInterface
 {
     private $decorated;
