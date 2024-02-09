@@ -3,3 +3,6 @@ controllers:
         path: ../src/Controller/
         namespace: App\Controller
     type: attribute
+task_monitor:
+    path: /task-monitor
+    controller: App\Controller\TaskMonitorController::index

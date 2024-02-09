@@ -4,7 +4,12 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
 parameters:
-
+    SUPPORTED_EXTENSIONS: '%env(json:SUPPORTED_EXTENSIONS)%'
+    INPUT_DIR: '%env(INPUT_DIR)%'
+    TARGET_DIR: '%env(TARGET_DIR)%'
+    TRANSCODE_DEBUG: '%env(TRANSCODE_DEBUG)%'
+    MASTER_PLAYLIST: '%env(MASTER_PLAYLIST)%'
+    CONTENT_MAKER_ADDR: '%env(CONTENT_MAKER_ADDR)%'
 services:
     # default configuration for services in *this* file
     _defaults:
@@ -20,5 +25,16 @@ services:
             - '../src/Entity/'
             - '../src/Kernel.php'
 
+    App\Entity\TranscodingProcesses: ~
+
+    App\Service\TranscodeProcessingService:
+    App\Service\FfmpegHandler\TranscoderBaseService:
+        arguments:
+            $parameterBag: '@parameter_bag'
+
+    App\ApiResource\ApiCreateTask:
+        decorates: 'api_platform.openapi.factory'
+        arguments: [ '@App\ApiResource\ApiCreateTask.inner' ]
+        autoconfigure: false
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
