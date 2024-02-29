@@ -54,14 +54,14 @@ class TranscodeService extends TranscoderBaseService
 
         $command = $this->commandMaker->__invoke('default',$inputFile, $outputDirectory, '360p', 640, 360, 800, 1200, '96k');
 
-        $this->transcodeProcessing->processing($command, $name, '360p', $outputDirectory, $otherData['user']);
+        $this->transcodeProcessing->processing($command, $name, '360p', $outputDirectory, $otherData['user'], $otherData['kinopoiskId']);
         if (!$this->debug) {
             $command = $this->commandMaker->__invoke('default', $inputFile, $outputDirectory, '480p', 842, 480, 1400, 2100, '128k');
-            $this->transcodeProcessing->processing($command, $name, '480p', $outputDirectory, $otherData['user']);
+            $this->transcodeProcessing->processing($command, $name, '480p', $outputDirectory, $otherData['user'], $otherData['kinopoiskId']);
             $command = $this->commandMaker->__invoke('default', $inputFile, $outputDirectory, '720p', 1280, 720, 2800, 4200, '128k');
-            $this->transcodeProcessing->processing($command, $name, '720p', $outputDirectory, $otherData['user']);
+            $this->transcodeProcessing->processing($command, $name, '720p', $outputDirectory, $otherData['user'], $otherData['kinopoiskId']);
             $command = $this->commandMaker->__invoke('default', $inputFile, $outputDirectory, '1080p', 1920, 1080, 5000, 7500, '192k');
-            $this->transcodeProcessing->processing($command, $name, '1080p', $outputDirectory, $otherData['user']);
+            $this->transcodeProcessing->processing($command, $name, '1080p', $outputDirectory, $otherData['user'], $otherData['kinopoiskId']);
         }
 
         $this->returnComplite->setSmarty($otherData);

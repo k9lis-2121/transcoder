@@ -45,8 +45,10 @@ class CommandMakerService extends TranscoderBaseService
      * @param string $audioBitrate
      * @return array
      */
-    public function __invoke(string $template = 'default', string $inputFile, string $outputFile, string $resolution, int $width, int $height, int $bitrate, int $bufsize, string $audioBitrate): array
+    public function __invoke(string $template, string $inputFile, string $outputFile, string $resolution, int $width, int $height, int $bitrate, int $bufsize, string $audioBitrate): array
     {
+
+        $template = 'default';
         $outputDirectory = $outputFile . '/' . $resolution;
         // Создание директории
         $this->createDirectory($outputDirectory);
@@ -83,6 +85,7 @@ class CommandMakerService extends TranscoderBaseService
                 '-hls_segment_filename', $outputDirectory . '/' . $resolution . '_%03d.ts',
                 $outputDirectory . '/' . $resolution . '.m3u8'
             ];
+
         }
 
         return $command;

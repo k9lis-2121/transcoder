@@ -35,6 +35,7 @@ class TranscodeProcessingService extends TranscoderBaseService
         $this->transcodingProcess = $transcodingProcess;
     }
 
+    
     /**
      * Небольшая автоматизация обновления записи в статусах
      *
@@ -47,11 +48,11 @@ class TranscodeProcessingService extends TranscoderBaseService
     {
         if ($status == 'Ошибка') {
             $this->transcodingProcess->setStatus('Ошибка');
-            $this->transcodingProcess->setProgress($resolution);
+            $this->transcodingProcess->setStage($resolution);
             $this->transcodingProcess->setErrorMessage($message);
         } elseif ($status == 'Завершено') {
             $this->transcodingProcess->setStatus('Завершено');
-            $this->transcodingProcess->setProgress($resolution);
+            $this->transcodingProcess->setStage($resolution);
             $this->transcodingProcess->setEndTime(new \DateTimeImmutable());
         }
 
@@ -70,8 +71,9 @@ class TranscodeProcessingService extends TranscoderBaseService
     private function postProcessing(string $outputDir, string $resolution):void
     {
         // Скрипт: Копируем плейлист
-        $sourceFolder = $this->baseTargetDir . 'playlist_all' . '/' . $resolution;
+        // $sourceFolder = $this->appBaseDir . 'public/playlist_all' . '/' . $resolution;
 
+        $sourceFolder = '/TRANSCODE/ffmpegphp/public/playlist_all' . '/' . $resolution;
         // Проверяем, существует ли исходный файл
         if (!file_exists($sourceFolder . '/' . $this->masterPlaylist)) {
             throw new \Exception('Error Not Found: ' . $sourceFolder . '/' . $this->masterPlaylist);
@@ -88,7 +90,7 @@ class TranscodeProcessingService extends TranscoderBaseService
      * @param string $name
      * @return void
      */
-    public function processing(array $command, string $name, string $resolution, string $targetDir, string $user): void
+    public function processing(array $command, string $name, string $resolution, string $targetDir, string $user, $kpId): void
     {
 
         $errorLogger = new Logger('error');
@@ -112,11 +114,19 @@ class TranscodeProcessingService extends TranscoderBaseService
                 $hdd = $matches[1];
             } 
 
-            $this->transcodingProcess->setFilmName($name);
+            //Костыль, вынести куданибудь
+            $path = $targetDir;
+            $segments = explode('/', trim($path, '/'));
+            $lastSegment = end($segments);
+
+
+            $this->transcodingProcess->setFilmName($lastSegment);
             $this->transcodingProcess->setStartTime(new \DateTime());
             $this->transcodingProcess->setCtreatedAt(new \DateTimeImmutable());
-            $this->transcodingProcess->setStatus('Запущен');
-            $this->transcodingProcess->setProgress($resolution);
+            $this->transcodingProcess->setStatus('Запущен!');
+            $this->transcodingProcess->setStage($resolution);
+            $this->transcodingProcess->setOrigTorrentFileName($name);
+            $this->transcodingProcess->setKpId($kpId);
             $this->transcodingProcess->setHdd($hdd);
             $this->transcodingProcess->setEndTime(null);
             

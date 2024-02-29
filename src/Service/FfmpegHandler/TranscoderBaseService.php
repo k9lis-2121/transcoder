@@ -17,6 +17,7 @@ class TranscoderBaseService{
     protected $transcodeDebug;
     protected $masterPlaylist;
     protected $contentMaker;
+    protected $appBaseDir;
 
     /**
      * Конструктор
@@ -31,6 +32,7 @@ class TranscoderBaseService{
         $this->baseTargetDir = $parameterBag->get('TARGET_DIR');
         $this->masterPlaylist = $parameterBag->get('MASTER_PLAYLIST');
         $this->contentMaker = $parameterBag->get('CONTENT_MAKER_ADDR');
+        $this->appBaseDir = $parameterBag->get('APP_BASE_DIR');
         
         if($parameterBag->get('TRANSCODE_DEBUG') == 'true'){
             $this->transcodeDebug = true;

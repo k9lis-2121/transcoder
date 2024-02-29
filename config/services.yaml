@@ -10,6 +10,7 @@ parameters:
     TRANSCODE_DEBUG: '%env(TRANSCODE_DEBUG)%'
     MASTER_PLAYLIST: '%env(MASTER_PLAYLIST)%'
     CONTENT_MAKER_ADDR: '%env(CONTENT_MAKER_ADDR)%'
+    APP_BASE_DIR: '%kernel.project_dir%'
 services:
     # default configuration for services in *this* file
     _defaults:

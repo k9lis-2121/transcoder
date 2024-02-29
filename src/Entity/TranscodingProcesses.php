@@ -50,6 +50,18 @@ class TranscodingProcesses
     #[ORM\Column(nullable: true)]
     private ?int $hdd = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $origTorrentFileName = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $stage = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $kpId = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?int $smartyId = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -195,6 +207,54 @@ class TranscodingProcesses
     public function setHdd(?int $hdd): static
     {
         $this->hdd = $hdd;
+
+        return $this;
+    }
+
+    public function getOrigTorrentFileName(): ?string
+    {
+        return $this->origTorrentFileName;
+    }
+
+    public function setOrigTorrentFileName(?string $origTorrentFileName): static
+    {
+        $this->origTorrentFileName = $origTorrentFileName;
+
+        return $this;
+    }
+
+    public function getStage(): ?string
+    {
+        return $this->stage;
+    }
+
+    public function setStage(?string $stage): static
+    {
+        $this->stage = $stage;
+
+        return $this;
+    }
+
+    public function getKpId(): ?string
+    {
+        return $this->kpId;
+    }
+
+    public function setKpId(?string $kpId): static
+    {
+        $this->kpId = $kpId;
+
+        return $this;
+    }
+
+    public function getSmartyId(): ?int
+    {
+        return $this->smartyId;
+    }
+
+    public function setSmartyId(?int $smartyId): static
+    {
+        $this->smartyId = $smartyId;
 
         return $this;
     }
